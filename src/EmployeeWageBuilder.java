@@ -19,7 +19,6 @@ public class EmployeeWageBuilder {
     public void addCompany(CompanyEmpWage c) {
         company.add(c);
     }
-
     /*
      * haveContacts() method to return index of particular person in person array
      * */
@@ -36,7 +35,7 @@ public class EmployeeWageBuilder {
     public void editCompanydetial(String s) {
         Scanner inp = new Scanner(System.in);
         int place = haveCompanydetails(s);
-        EmployeeWageBuilder obj2 = new EmployeeWageBuilder();
+        EmployeeWageBuilderUC2 obj2 = new EmployeeWageBuilderUC2();
         if (place >= 0) {
             System.out.println("Enter Name of the Company");
             String name = inp.next();
@@ -72,7 +71,6 @@ public class EmployeeWageBuilder {
     /*
      * Method for Priting details of Company
      */
-
     public void printCompanyDetails() {
         for (int i = 0; i < company.size(); i++)
             System.out.println(company.get(i));
@@ -80,7 +78,6 @@ public class EmployeeWageBuilder {
     /*
      * hours() Method for get how many Hours employee worked
      * */
-
     int hours(){
         int emphrs=0;
         int days =0;
@@ -90,10 +87,10 @@ public class EmployeeWageBuilder {
         while (emphrs<=99 && days<=20) {
             switch (i) {
                 case 1:
-                    emphrs = emphrs +obj3.getFull_time_Hours();
+                    emphrs = emphrs +obj2.getFull_time_Hours();
                     break;
                 case 2:
-                    emphrs = emphrs + obj3.getPart_time_Hours();
+                    emphrs = emphrs + obj2.getPart_time_Hours();
                     break;
                 default:
                     break;
@@ -105,36 +102,38 @@ public class EmployeeWageBuilder {
      * Method for total wage of Employee
      * */
     int total_wage(){
-        int total_wage=hours()*obj3.getWage_per_Hour();
+        int total_wage=hours()*obj2.getWage_per_Hour();
         return total_wage;
     }
 
-    static CompanyEmpWage obj3 =new CompanyEmpWage();                   //Creating object of CompanyEmpWage Class
-
+    static CompanyEmpWage obj2 =new CompanyEmpWage();                       //Creating object of CompanyEmpWage Class
 
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
         EmployeeWageBuilder obj2 = new EmployeeWageBuilder();
         menu();
         int choice = inp.nextInt();
-        while (choice != 4) {                           //Taking inputs from user
-
+        while (choice != 3) {
             if (choice == 1) {
-                System.out.println("Enter Name of the Company");
-                String name = inp.next();
-                System.out.println("Enter full Time Hours");
-                int full_time = inp.nextInt();
-                System.out.println("Enter Part time Hours  ");
-                int part_time = inp.nextInt();
-                System.out.println("Enter wage per Hour of Company");
-                int wage_per_hour = inp.nextInt();
-                System.out.println("Enter no of Working Days of Company in a month");
-                int days = inp.nextInt();
-                System.out.println("Enter maximum no of Hours limit in a company");
-                int max_hours = inp.nextInt();
-                System.out.println("Total Wage of Company");
-                int totalWage = obj2.total_wage();
-                obj2.addCompany(new CompanyEmpWage(name, full_time, part_time, wage_per_hour, days, max_hours, totalWage));
+                System.out.println("Enter no of contacts to Add");
+                int number = inp.nextInt();
+                for (int i = 0; i <= number - 1; i++) {
+                    System.out.println("Enter Name of the Company");
+                    String name = inp.next();
+                    System.out.println("Enter full Time Hours");
+                    int full_time = inp.nextInt();
+                    System.out.println("Enter Part time Hours  ");
+                    int part_time = inp.nextInt();
+                    System.out.println("Enter wage per Hour of Company");
+                    int wage_per_hour = inp.nextInt();
+                    System.out.println("Enter no of Working Days of Company in a month");
+                    int days = inp.nextInt();
+                    System.out.println("Enter maximum no of Hours limit in a company");
+                    int max_hours = inp.nextInt();
+                    System.out.println("Total Wage of Company");
+                    int totalWage = obj2.total_wage();
+                    obj2.addCompany(new CompanyEmpWage(name, full_time, part_time, wage_per_hour, days, max_hours, totalWage));
+                }
             }
             else if (choice == 2)
             {
